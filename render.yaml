@@ -1,8 +1,8 @@
-﻿services:
+services:
   # 1. Python AI Analysis Microservice
   - type: web
     name: asset-ops-ai-service
-    env: python
+    runtime: python
     region: oregon
     plan: free
     rootDir: ai-service
@@ -14,7 +14,7 @@
   # 2. Node.js Express REST API
   - type: web
     name: asset-ops-backend
-    env: node
+    runtime: node
     region: oregon
     plan: free
     rootDir: backend
@@ -39,9 +39,10 @@
       - key: CLIENT_ORIGIN
         value: "*"
 
-  # 3. React Frontend Static Site (Served globally via Render CDN - no region)
-  - type: static
+  # 3. React Frontend Static Site (Served globally via Render CDN - no region needed)
+  - type: web
     name: asset-ops-frontend
+    runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -52,3 +53,4 @@
     envVars:
       - key: VITE_API_URL
         sync: false
+

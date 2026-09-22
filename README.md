@@ -6,7 +6,7 @@ Flagged assets automatically route to department-specific queues (`Electrical`, 
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
                                   +------------------------------------+
@@ -32,7 +32,7 @@ Flagged assets automatically route to department-specific queues (`Electrical`, 
 
 ---
 
-## ⚡ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Description |
 |---|---|---|
@@ -44,7 +44,7 @@ Flagged assets automatically route to department-specific queues (`Electrical`, 
 
 ---
 
-## 🧠 AI Decision Layer (Explainable Rules)
+##  AI Decision Layer (Explainable Rules)
 
 Health status is evaluated across 4 independent checks, resolving to the **highest severity** (`Critical` > `Watch` > `Healthy`):
 
@@ -76,20 +76,9 @@ Instead of an opaque score, the AI generates explainable recommendations combini
 
 ---
 
-## 🔑 Demo Personas & Credentials
 
-The system seeds with pre-configured personas for demonstration and role-based access testing:
 
-| Role | Persona Name | Email | Password | Access Scope |
-|---|---|---|---|---|
-| **Admin** | Chief Facilities Officer | `admin@ops.local` | `Admin@12345` | Global (Full access across all departments) |
-| **DepartmentStaff** | Marcus Vance | `electrical@ops.local` | `Staff@12345` | Scoped strictly to **Electrical** department |
-| **DepartmentStaff** | Elena Rostova | `hvac@ops.local` | `Staff@12345` | Scoped strictly to **HVAC** department |
-| **DepartmentStaff** | David Chen | `plumbing@ops.local` | `Staff@12345` | Scoped strictly to **Plumbing** department |
-
----
-
-## 📂 Repository Structure
+##  Repository Structure
 
 ```
 ├── ai-service/                   # Python FastAPI AI Analysis Microservice
@@ -148,7 +137,7 @@ The system seeds with pre-configured personas for demonstration and role-based a
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - **Node.js** (v18+ recommended, v22 supported)
@@ -217,7 +206,7 @@ This generates:
 
 ---
 
-## 📡 API Reference Summary
+##  API Reference Summary
 
 ### Auth
 | Method | Endpoint | Description | Access |
@@ -265,7 +254,7 @@ This generates:
 
 ---
 
-## 🧪 Automated Test Suites
+##  Automated Test Suites
 
 The codebase includes end-to-end automated verification scripts:
 
@@ -292,7 +281,7 @@ npm run build         # (in frontend/)
 
 ---
 
-## 🔒 Security & Governance Guarantees
+##  Security & Governance Guarantees
 
 - **No Hardcoded Secrets**: DB URIs, JWT secrets, and microservice URLs are strictly loaded from environment variables (`.env`).
 - **Server-Side Authorization**: DepartmentStaff cannot access, modify, ingest readings for, or resolve alerts on equipment outside their assigned department (enforced at controller and middleware levels, returning `403 Forbidden`).
