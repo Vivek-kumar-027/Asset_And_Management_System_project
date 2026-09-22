@@ -52,5 +52,5 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
+        value: https://asset-ops-backend.onrender.com
 

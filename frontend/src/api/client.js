@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Normalize baseURL to always include /api prefix safely
-const rawBase = import.meta.env.VITE_API_URL || '/api';
+const defaultBase = import.meta.env.DEV ? '/api' : 'https://asset-ops-backend.onrender.com/api';
+const rawBase = import.meta.env.VITE_API_URL || defaultBase;
 const cleanBase = rawBase.replace(/\/+$/, '');
 const baseURL = cleanBase.endsWith('/api') ? cleanBase : cleanBase + '/api';
 
