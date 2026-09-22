@@ -1,4 +1,4 @@
-services:
+﻿services:
   # 1. Python AI Analysis Microservice
   - type: web
     name: asset-ops-ai-service
@@ -39,12 +39,9 @@ services:
       - key: CLIENT_ORIGIN
         value: "*"
 
-  # 3. React Frontend Static Site
-  - type: web
+  # 3. React Frontend Static Site (Served globally via Render CDN - no region)
+  - type: static
     name: asset-ops-frontend
-    env: static
-    region: oregon
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -54,7 +51,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: asset-ops-backend
-          property: host
+        sync: false
