@@ -23,6 +23,10 @@ app.use(express.json());
 
 // Mount Routes
 app.use('/api/auth', authRoutes);
+app.use('/auth', authRoutes);
+app.use('/assets', assetRoutes);
+app.use('/alerts', alertRoutes);
+app.use('/dashboard', dashboardRoutes);
 app.use('/api/assets', assetRoutes);
 app.use('/api/alerts', alertRoutes);
 app.use('/api/dashboard', dashboardRoutes);

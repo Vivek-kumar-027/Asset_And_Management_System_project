@@ -1,7 +1,12 @@
 import axios from 'axios';
 
+// Normalize baseURL to always include /api prefix safely
+const rawBase = import.meta.env.VITE_API_URL || '/api';
+const cleanBase = rawBase.replace(/\/+$/, '');
+const baseURL = cleanBase.endsWith('/api') ? cleanBase : cleanBase + '/api';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
