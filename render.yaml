@@ -1,0 +1,60 @@
+services:
+  # 1. Python AI Analysis Microservice
+  - type: web
+    name: asset-ops-ai-service
+    env: python
+    region: oregon
+    plan: free
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # 2. Node.js Express REST API
+  - type: web
+    name: asset-ops-backend
+    env: node
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PYTHON_SERVICE_URL
+        fromService:
+          type: web
+          name: asset-ops-ai-service
+          property: host
+      - key: CLIENT_ORIGIN
+        value: "*"
+
+  # 3. React Frontend Static Site
+  - type: web
+    name: asset-ops-frontend
+    env: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: asset-ops-backend
+          property: host

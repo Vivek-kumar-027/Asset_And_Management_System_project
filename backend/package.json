@@ -1,0 +1,29 @@
+{
+  "name": "asset-maintenance-ops-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Asset & Maintenance Ops Dashboard",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test:models": "node src/tests/verify_models.js",
+    "test:api": "node src/tests/verify_api_endpoints.js",
+    "test:rbac": "node src/tests/verify_rbac.js",
+    "test:alerts": "node src/tests/verify_alert_routing.js",
+    "seed": "node src/scripts/seed.js",
+    "view:data": "node src/scripts/view_data.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.6",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
