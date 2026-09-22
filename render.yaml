@@ -41,7 +41,7 @@ services:
 
   # 3. React Frontend Static Site (Served globally via Render CDN - no region needed)
   - type: web
-    name: asset-ops-frontend
+    name: asset-ops-management-system
     runtime: static
     rootDir: frontend
     buildCommand: npm install && npm run build
